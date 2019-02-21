@@ -1,5 +1,5 @@
 monsters = {
     "goblin": ["50 XP", "AC 15", "HP 7 2d6", "Speed 30 ft", "pg# 166"]
 }
-if (XP == 50):
-    print(monsters)
+for key in monsters:
+    print(monsters["goblin"])
