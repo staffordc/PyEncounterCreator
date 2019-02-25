@@ -9,6 +9,15 @@ monsters = {
     "zombie": ["XP 50", "AC 8", "HP 22 (3d8)", "Speed 20 ft", "pg# 315"],
     "gnoll": ["XP 100", "AC 15", "HP 22 (5d8)", "Speed 30 ft", "pg# 163"],
 }
-for key, value in monsters.items():
-    if ("XP 50" in value):
-        print(key, value)
+player_input_raw = input(
+    "What is the XP of the enounter you would like to bring up? ")
+player_input = int(player_input_raw)
+
+
+def player_input_math(intput, dictionary):
+    new_dictionary = {"here's": [
+        "your", "results", "good", "job", "me", "pg# 420"]}
+    for key, value in dictionary.items():
+        if(intput in value and intput == value[0] or intput > value[0]):
+            new_dictionary[key] = value
+    return new_dictionary
