@@ -34,8 +34,7 @@ player_input = int(player_input_raw)
 
 
 def player_input_math(intput, dictionary):
-    new_dictionary = {"here's": [
-        "your", "results", "good", "job", "me", "pg# 420"]}
+    new_dictionary = {}
     for key, value in dictionary.items():
         if(intput in value and intput == value[0] or intput > value[0]):
             new_dictionary[key] = value
