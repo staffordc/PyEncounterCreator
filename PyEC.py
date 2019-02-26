@@ -1,6 +1,6 @@
 import pprint
 
-pp = pprint.PrettyPrinter(indent=0)
+pp = pprint.PrettyPrinter(indent=0, width=160)
 
 monsters = {
     "goblin": [50, "AC 15", "HP 7 (2d6)", "Speed 30 ft", "pg# 166"],
@@ -33,7 +33,7 @@ player_input_raw = input(
 player_input = int(player_input_raw)
 
 
-def player_input_math(intput, dictionary):
+def player_input_experience(intput, dictionary):
     new_dictionary = {}
     for key, value in dictionary.items():
         if(intput in value and intput == value[0] or intput > value[0]):
@@ -41,4 +41,18 @@ def player_input_math(intput, dictionary):
     return new_dictionary
 
 
-pp.pprint(player_input_math(player_input, monsters))
+pp.pprint(player_input_experience(player_input, monsters))
+
+if (player_input/50 >= 2):
+    player_input_horde = input(
+        "Would you like to compose your monsters of the same characters, or disparate? ""s""key for ""same"" ""d""key for ""different"" and ""n"" for ""no, I got this")
+    if(player_input_horde == 's'):
+        player_input_horde_choice = input(
+            "What enemy would you like to see more of? ")
+    elif(player_input_horde == 'd'):
+        player_input_horde_choice = input(
+            "We will randomly select from your list given ")
+    elif(player_input_horde == 'n'):
+        pp.pprint(player_input_experience(player_input, monsters))
+    else:
+        input("Sorry, didn't catch that, could you try again? ")
