@@ -43,16 +43,21 @@ def player_input_experience(intput, dictionary):
 
 pp.pprint(player_input_experience(player_input, monsters))
 
-if (player_input/50 >= 2):
-    player_input_horde = input(
-        "Would you like to compose your monsters of the same characters, or disparate? ""s""key for ""same"" ""d""key for ""different"" and ""n"" for ""no, I got this")
-    if(player_input_horde == 's'):
-        player_input_horde_choice = input(
-            "What enemy would you like to see more of? ")
-    elif(player_input_horde == 'd'):
-        player_input_horde_choice = input(
-            "We will randomly select from your list given ")
-    elif(player_input_horde == 'n'):
-        pp.pprint(player_input_experience(player_input, monsters))
+
+def horde_makeup(player_input):
+    if (player_input/50 >= 2):
+        player_input_horde = input(
+            "Would you like to compose your monsters of the same characters, or disparate? ""s""key for ""same"" ""d""key for ""different"" and ""n"" for ""no, I got this")
+        if(player_input_horde == 's'):
+            player_input_horde_choice = input(
+                "What enemy would you like to see more of? ")
+        elif(player_input_horde == 'd'):
+            player_input_horde_choice = input(
+                "We will randomly select from your list given ")
+        elif(player_input_horde == 'n'):
+            pp.pprint(player_input_experience(player_input, monsters))
+        else:
+            input("Sorry, didn't catch that, could you try again? ")
+            horde_makeup(player_input)
     else:
-        input("Sorry, didn't catch that, could you try again? ")
+        input("Which of these options would you like to pick?")
