@@ -40,13 +40,13 @@ def horde_makeup_same(exp_input, dictionary):
         if (monster_name == key):
             base_exp = value[0]
             challenge_rating = exp_input/base_exp
-            if(challenge_rating < 2 or challenge_rating >= 1.5):
+            if(challenge_rating < 2 and challenge_rating >= 1.5):
                 return"2 " + monster_name
-            elif(challenge_rating >= 2):
+            elif(challenge_rating >= 2 and challenge_rating < 2.5):
                 return"6 " + monster_name
-            elif(challenge_rating >= 2.5):
+            elif(challenge_rating >= 2.5 and challenge_rating < 3):
                 return"10 " + monster_name
-            elif(challenge_rating >= 3):
+            elif(challenge_rating >= 3 and challenge_rating < 4):
                 return"14 " + monster_name
             else:
                 return "1 " + monster_name
