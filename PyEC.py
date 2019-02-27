@@ -37,9 +37,11 @@ def horde_makeup_same(exp_input, dictionary):
     monster_name = input(
         "What is the name of the monster you want duplicates of? ")
     for key, value in dictionary.items():
-        if (monster_name == key):
+        if (key in dictionary):
             base_exp = value[0]
+            print("base_exp: " + base_exp)
             challenge_rating = exp_input/base_exp
+            print("challenge rating: " + challenge_rating)
             if(challenge_rating < 2 and challenge_rating >= 1.5):
                 return"2 " + monster_name
             elif(challenge_rating >= 2 and challenge_rating < 2.5):
@@ -48,11 +50,13 @@ def horde_makeup_same(exp_input, dictionary):
                 return"10 " + monster_name
             elif(challenge_rating >= 3 and challenge_rating < 4):
                 return"14 " + monster_name
+            elif(challenge_rating > 4):
+                return"20 " + monster_name
             else:
                 return "1 " + monster_name
         else:
             print("Please type your response again")
-            horde_makeup_same(exp_input, dictionary)
+            return horde_makeup_same(exp_input, dictionary)
 
 
 def horde_makeup(player_input, dictionary):
