@@ -54,6 +54,8 @@ if difficulty == 'E':
         elif x == '4':
             player_size[i] = 100
     print(player_size)
+    xp_sum = sum(player_size)
+    print(xp_sum)
 elif difficulty == 'M':
     print("Okay, so a fair fight")
     for i, x in enumerate(player_size):
@@ -66,6 +68,8 @@ elif difficulty == 'M':
         if x == '4':
             player_size[i] = 200
     print(player_size)
+    xp_sum = sum(player_size)
+    print(xp_sum)
 elif difficulty == 'H':
     print("So you want to see them struggle, and maybe lose someone?")
     for i, x in enumerate(player_size):
@@ -78,6 +82,8 @@ elif difficulty == 'H':
         if x == '4':
             player_size[i] = 400
     print(player_size)
+    xp_sum = sum(player_size)
+    print(xp_sum)
 elif difficulty == 'D':
     print("This is how you get a party wipe, dude.")
     for i, x in enumerate(player_size):
@@ -90,5 +96,6 @@ elif difficulty == 'D':
         if x == '4':
             player_size[i] = 500
     print(player_size)
+    xp_sum = sum(player_size)
 else:
     print("You need to type e, m, h, or d for difficulty")
