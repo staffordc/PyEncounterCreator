@@ -1,4 +1,5 @@
 import pprint
+import time
 
 pp = pprint.PrettyPrinter(indent=0)
 
@@ -28,17 +29,66 @@ monsters = {
     "zombie": [50, "AC 8", "HP 22 (3d8)", "Speed 20 ft", "pg# 315"],
     "gnoll": [100, "AC 15", "HP 22 (5d8)", "Speed 30 ft", "pg# 163"],
 }
-player_input_raw = input(
-    "What is the XP of the enounter you would like to bring up? ")
-player_input = int(player_input_raw)
 
+players = int(input("How many players are you creating an encounter for? (Please use 1, 2, 3, etc.): "))
+players_str = str(players)
+print("Party of "+players_str+" your encounter is underway!")
+time.sleep(1)
+player_size = []
+for x in range(players):
+    player_size.append(input("What level is player : "))
 
-def player_input_math(intput, dictionary):
-    new_dictionary = {}
-    for key, value in dictionary.items():
-        if(intput in value and intput == value[0] or intput > value[0]):
-            new_dictionary[key] = value
-    return new_dictionary
+print(player_size)
 
-
-pp.pprint(player_input_math(player_input, monsters))
+difficulty = input("How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
+difficulty = difficulty.upper()
+if difficulty == 'E':
+    print("Alright, take it easy on em, sure.")
+    for i, x in enumerate(player_size):
+        if x == '1':
+            player_size[i] = 25
+        elif x == '2':
+            player_size[i] = 50
+        elif x == '3':
+            player_size[i] = 75
+        elif x == '4':
+            player_size[i] = 100
+    print(player_size)
+elif difficulty == 'M':
+    print("Okay, so a fair fight")
+    for i, x in enumerate(player_size):
+        if x == '1':
+            player_size[i] = 50
+        if x == '2':
+            player_size[i] = 100
+        if x == '3':
+            player_size[i] = 150
+        if x == '4':
+            player_size[i] = 200
+    print(player_size)
+elif difficulty == 'H':
+    print("So you want to see them struggle, and maybe lose someone?")
+    for i, x in enumerate(player_size):
+        if x == '1':
+            player_size[i] = 75
+        if x == '2':
+            player_size[i] = 150
+        if x == '3':
+            player_size[i] = 225
+        if x == '4':
+            player_size[i] = 400
+    print(player_size)
+elif difficulty == 'D':
+    print("This is how you get a party wipe, dude.")
+    for i, x in enumerate(player_size):
+        if x == '1':
+            player_size[i] = 125
+        if x == '2':
+            player_size[i] = 250
+        if x == '3':
+            player_size[i] = 375
+        if x == '4':
+            player_size[i] = 500
+    print(player_size)
+else:
+    print("You need to type e, m, h, or d for difficulty")
