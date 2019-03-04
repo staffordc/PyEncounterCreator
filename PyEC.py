@@ -114,45 +114,54 @@ else:
 
 def horde_makeup_same(exp_input, dictionary):
     monster_name = input(
-        "What is the name of the monster you want duplicates of? ")
+        "What is the name of the monster you want? ")
     for key, value in dictionary.items():
         if (key in dictionary):
             base_exp = value[0]
-            print("base_exp: " + base_exp)
-            challenge_rating = exp_input/base_exp
-            print("challenge rating: " + challenge_rating)
-            if(challenge_rating < 2 and challenge_rating >= 1.5):
-                return"2 " + monster_name
-            elif(challenge_rating >= 2 and challenge_rating < 2.5):
-                return"6 " + monster_name
-            elif(challenge_rating >= 2.5 and challenge_rating < 3):
-                return"10 " + monster_name
-            elif(challenge_rating >= 3 and challenge_rating < 4):
-                return"14 " + monster_name
-            elif(challenge_rating > 4):
-                return"20 " + monster_name
-            else:
-                return "1 " + monster_name
+            ###print("base_exp: " + base_exp)
+            experience_maths(base_exp, exp_input, monster_name, dictionary)
         else:
             print("Please type your response again")
             return horde_makeup_same(exp_input, dictionary)
 
 
-def horde_makeup(player_input, dictionary):
-    player_input_horde = input(
-        "Would you like to compose your monsters of the same characters, or disparate? `s` key for `same`, `d` key for `different`, and `n` for `no, I got this` ")
-    if(player_input_horde == 's'):
-        return horde_makeup_same(experience, player_monster_list)
-    elif(player_input_horde == 'd'):
-        player_input_horde_choice = input(
-            "We will randomly select from your list given ")
+def horde_makeup(experience, dictionary):
+    player_input = input(
+        "Would you like help with challenge rating math? ")
+    player_input_horde = player_input.lower()
+    if(player_input_horde == 'y'):
+        return horde_makeup_same(experience, dictionary)
     elif(player_input_horde == 'n'):
-        pp.pprint(player_input_experience(experience, monsters))
+        pp.pprint(player_input_experience(experience, dictionary))        
     else:
         input("Sorry, didn't catch that, could you try again? ")
         horde_makeup(experience, dictionary)
 
-
+            
+            
+def experience_maths(base_exp, exp_input, monster_name, dictionary):
+    multi_monster = input("Would you like many of the same monster? (y or n) ")
+    multi_monster = multi_monster.lower()
+    challenge_rating = exp_input/base_exp
+    ###print("challenge rating: " + challenge_rating)
+    if(multi_monster == "y"):
+        if(challenge_rating < 2 and challenge_rating >= 1.5):
+            return"2 " + monster_name
+        elif(challenge_rating >= 2 and challenge_rating < 2.5):
+            return"6 " + monster_name
+        elif(challenge_rating >= 2.5 and challenge_rating < 3):
+            return"10 " + monster_name
+        elif(challenge_rating >= 3 and challenge_rating < 4):
+            return"14 " + monster_name
+        elif(challenge_rating > 4):
+            return"20 " + monster_name
+        else:
+            return "1 " + monster_name
+    elif(multi_monster == "n"):
+        print("I didn't actually figure this part out")
+    else:
+        print("Sorry, I didn't catch that, come again? ")
+        experience_maths(base_exp, exp_input, monster_name, dictionary)
 ###pp.pprint(player_input_experience(experience, monsters))
 
 ###player_monster_list = (player_input_experience_experience(experience, monsters))
