@@ -1,7 +1,9 @@
 import pprint
 import time
 
-pp = pprint.PrettyPrinter(indent=0, width=160)
+pp = pprint.PrettyPrinter(indent=0, width=200)
+
+experience = 5000
 
 monsters = {
     "goblin": [50, "AC 15", "HP 7 (2d6)", "Speed 30 ft", "pg# 166"],
@@ -38,7 +40,6 @@ time.sleep(1)
 player_size = []
 for x in range(players):
     player_size.append(input("What level is player : "))
-
 print(player_size)
 
 
@@ -48,68 +49,6 @@ def player_input_experience(intput, dictionary):
         if(intput in value and intput == value[0] or intput > value[0]):
             new_dictionary[key] = value
     return new_dictionary
-
-
-difficulty = input(
-    "How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
-difficulty = difficulty.upper()
-if difficulty == 'E':
-    print("Alright, take it easy on em, sure.")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 25
-        elif x == '2':
-            player_size[i] = 50
-        elif x == '3':
-            player_size[i] = 75
-        elif x == '4':
-            player_size[i] = 100
-    print(player_size)
-    xp_sum = sum(player_size)
-    print(xp_sum)
-elif difficulty == 'M':
-    print("Okay, so a fair fight")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 50
-        if x == '2':
-            player_size[i] = 100
-        if x == '3':
-            player_size[i] = 150
-        if x == '4':
-            player_size[i] = 200
-    print(player_size)
-    xp_sum = sum(player_size)
-    print(xp_sum)
-elif difficulty == 'H':
-    print("So you want to see them struggle, and maybe lose someone?")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 75
-        if x == '2':
-            player_size[i] = 150
-        if x == '3':
-            player_size[i] = 225
-        if x == '4':
-            player_size[i] = 400
-    print(player_size)
-    xp_sum = sum(player_size)
-    print(xp_sum)
-elif difficulty == 'D':
-    print("This is how you get a party wipe, dude.")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 125
-        if x == '2':
-            player_size[i] = 250
-        if x == '3':
-            player_size[i] = 375
-        if x == '4':
-            player_size[i] = 500
-    print(player_size)
-    xp_sum = sum(player_size)
-else:
-    print("You need to type e, m, h, or d for difficulty")
 
 
 def horde_makeup_same(exp_input, dictionary):
@@ -132,13 +71,12 @@ def horde_makeup(experience, dictionary):
     if(player_input_horde == 'y'):
         return horde_makeup_same(experience, dictionary)
     elif(player_input_horde == 'n'):
-        pp.pprint(player_input_experience(experience, dictionary))        
+        pp.pprint(player_input_experience(experience, dictionary))
     else:
         input("Sorry, didn't catch that, could you try again? ")
         horde_makeup(experience, dictionary)
 
-            
-            
+
 def experience_maths(base_exp, exp_input, monster_name, dictionary):
     multi_monster = input("Would you like many of the same monster? (y or n) ")
     multi_monster = multi_monster.lower()
@@ -162,10 +100,13 @@ def experience_maths(base_exp, exp_input, monster_name, dictionary):
     else:
         print("Sorry, I didn't catch that, come again? ")
         experience_maths(base_exp, exp_input, monster_name, dictionary)
-###pp.pprint(player_input_experience(experience, monsters))
 
-###player_monster_list = (player_input_experience_experience(experience, monsters))
 
-###same_horde_output = horde_makeup(experience, player_monster_list)
+pp.pprint(player_input_experience(experience, monsters))
 
-# print(same_horde_output)
+player_monster_list = (
+    player_input_experience(experience, monsters))
+
+same_horde_output = horde_makeup(experience, player_monster_list)
+
+print(same_horde_output)
