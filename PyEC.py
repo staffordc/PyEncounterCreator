@@ -3,8 +3,6 @@ import time
 
 pp = pprint.PrettyPrinter(indent=0, width=200)
 
-experience = 5000
-
 monsters = {
     "goblin": [50, "AC 15", "HP 7 (2d6)", "Speed 30 ft", "pg# 166"],
     "aarakocra": [50, "AC 12", "HP 13 (3d8)", "Speed 20ft, fly 50 ft", "pg# 12"],
@@ -44,7 +42,8 @@ print(player_size)
 player_size_int = list(map(int, player_size))
 print(player_size_int)
 
-difficulty = input("How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
+difficulty = input(
+    "How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
 difficulty = difficulty.upper()
 if difficulty == 'E':
     print("Alright, take it easy on em, sure.")
@@ -78,6 +77,7 @@ elif difficulty == 'D':
     xp_sum = sum(player_size_int)
 else:
     print("You need to type e, m, h, or d for difficulty")
+
 
 def player_input_experience(intput, dictionary):
     new_dictionary = {}
