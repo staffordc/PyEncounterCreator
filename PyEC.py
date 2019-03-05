@@ -41,7 +41,43 @@ player_size = []
 for x in range(players):
     player_size.append(input("What level is player : "))
 print(player_size)
+player_size_int = list(map(int, player_size))
+print(player_size_int)
 
+difficulty = input("How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
+difficulty = difficulty.upper()
+if difficulty == 'E':
+    print("Alright, take it easy on em, sure.")
+    for i, x in enumerate(player_size_int):
+        player_size_int[i] = x * 25
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
+    print(xp_sum)
+elif difficulty == 'M':
+    print("Okay, so a fair fight")
+    for i, x in enumerate(player_size_int):
+        player_size_int[i] = x * 50
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
+    print(xp_sum)
+elif difficulty == 'H':
+    print("So you want to see them struggle, and maybe lose someone?")
+    for i, x in enumerate(player_size_int):
+        if x == 4:
+            player_size_int[i] = 400
+        else:
+            player_size_int[i] = x * 75
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
+    print(xp_sum)
+elif difficulty == 'D':
+    print("This is how you get a party wipe, dude.")
+    for i, x in enumerate(player_size_int):
+        player_size_int[i] = x * 125
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
+else:
+    print("You need to type e, m, h, or d for difficulty")
 
 def player_input_experience(intput, dictionary):
     new_dictionary = {}
