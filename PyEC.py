@@ -39,63 +39,42 @@ for x in range(players):
     player_size.append(input("What level is player : "))
 
 print(player_size)
+player_size_int = list(map(int, player_size))
+print(player_size_int)
 
 difficulty = input("How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
 difficulty = difficulty.upper()
 if difficulty == 'E':
     print("Alright, take it easy on em, sure.")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 25
-        elif x == '2':
-            player_size[i] = 50
-        elif x == '3':
-            player_size[i] = 75
-        elif x == '4':
-            player_size[i] = 100
-    print(player_size)
-    xp_sum = sum(player_size)
+    for i, x in enumerate(player_size_int):
+        player_size_int[i] = x * 25
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
     print(xp_sum)
 elif difficulty == 'M':
     print("Okay, so a fair fight")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 50
-        if x == '2':
-            player_size[i] = 100
-        if x == '3':
-            player_size[i] = 150
-        if x == '4':
-            player_size[i] = 200
-    print(player_size)
-    xp_sum = sum(player_size)
+    for i, x in enumerate(player_size_int):
+        player_size_int[i] = x * 50
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
     print(xp_sum)
 elif difficulty == 'H':
     print("So you want to see them struggle, and maybe lose someone?")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 75
-        if x == '2':
-            player_size[i] = 150
-        if x == '3':
-            player_size[i] = 225
-        if x == '4':
-            player_size[i] = 400
-    print(player_size)
-    xp_sum = sum(player_size)
+    for i, x in enumerate(player_size_int):
+        if x == 4:
+            player_size_int[i] = 400
+        else:
+            player_size_int[i] = x * 75
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
     print(xp_sum)
 elif difficulty == 'D':
     print("This is how you get a party wipe, dude.")
-    for i, x in enumerate(player_size):
-        if x == '1':
-            player_size[i] = 125
-        if x == '2':
-            player_size[i] = 250
-        if x == '3':
-            player_size[i] = 375
-        if x == '4':
-            player_size[i] = 500
-    print(player_size)
-    xp_sum = sum(player_size)
+    for i, x in enumerate(player_size_int):
+        player_size_int[i] = x * 125
+    print(player_size_int)
+    xp_sum = sum(player_size_int)
 else:
     print("You need to type e, m, h, or d for difficulty")
+
+#pp.pprint(player_input_math(player_input, monsters))
