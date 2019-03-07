@@ -52,14 +52,14 @@ def party_levels(players):
             player_size_int[i] = x * 25
         print(player_size_int)
         experience = sum(player_size_int)
-        return(experience)
+        return experience
     elif difficulty == 'M':
         print("Okay, so a fair fight")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 50
         print(player_size_int)
         experience = sum(player_size_int)
-        return(experience)
+        return experience
     elif difficulty == 'H':
         print("So you want to see them struggle, and maybe lose someone?")
         for i, x in enumerate(player_size_int):
@@ -69,14 +69,14 @@ def party_levels(players):
                 player_size_int[i] = x * 75
         print(player_size_int)
         experience = sum(player_size_int)
-        return(experience)
+        return experience
     elif difficulty == 'D':
         print("This is how you get a party wipe, dude.")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 125
         print(player_size_int)
         experience = sum(player_size_int)
-        return(experience)
+        return experience
     else:
         print("You need to type e, m, h, or d for difficulty")
         party_levels(players)
@@ -140,6 +140,7 @@ def experience_maths(base_exp, exp_input, monster_name, dictionary):
         print("Sorry, I didn't catch that, come again? ")
         experience_maths(base_exp, exp_input, monster_name, dictionary)
 
+experience = party_levels(players)
 
 pp.pprint(player_input_experience(experience, monsters))
 
