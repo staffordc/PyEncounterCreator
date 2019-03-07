@@ -96,8 +96,8 @@ def horde_makeup_same(exp_input, dictionary):
     for key, value in dictionary.items():
         if (key in dictionary):
             base_exp = value[0]
-            ###print("base_exp: " + base_exp)
-            experience_maths(base_exp, exp_input, monster_name, dictionary)
+            ##print("base_exp: " + base_exp)
+            return experience_maths(base_exp, exp_input, monster_name, dictionary) 
         else:
             print("Please type your response again")
             return horde_makeup_same(exp_input, dictionary)
