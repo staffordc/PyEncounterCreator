@@ -33,10 +33,10 @@ monsters = {
 def party_levels(players):
     player_size = []
     for x in range(players):
-        player_size.append(input("What level is player"+ x + " : "))
-    print(player_size)
+        player_size.append(input("What level is player"+ str(x) + " : "))
+    ##print(player_size)
     player_size_int = list(map(int, player_size))
-    print(player_size_int)
+    ##print(player_size_int)
     difficulty = input(
         "How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
     difficulty = difficulty.upper()
@@ -44,14 +44,14 @@ def party_levels(players):
         print("Alright, take it easy on em, sure.")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 25
-        print(player_size_int)
+        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     elif difficulty == 'M':
         print("Okay, so a fair fight")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 50
-        print(player_size_int)
+        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     elif difficulty == 'H':
@@ -61,20 +61,19 @@ def party_levels(players):
                 player_size_int[i] = 400
             else:
                 player_size_int[i] = x * 75
-        print(player_size_int)
+        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     elif difficulty == 'D':
         print("This is how you get a party wipe, dude.")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 125
-        print(player_size_int)
+        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     else:
         print("You need to type e, m, h, or d for difficulty")
         party_levels(players)
-
 
 def player_input_experience(intput, dictionary):
     new_dictionary = {}
@@ -83,19 +82,16 @@ def player_input_experience(intput, dictionary):
             new_dictionary[key] = value
     return new_dictionary
 
-
 def horde_makeup_same(exp_input, dictionary):
     monster_name = input(
         "What is the name of the monster you want? ")
     for key, value in dictionary.items():
         if (key in dictionary):
             mon_exp = value[0]
-            ##print("base_exp: " + base_exp)
             return experience_maths_same(mon_exp, exp_input, monster_name, dictionary) 
         else:
             print("Please type your response again")
             return horde_makeup_same(exp_input, dictionary)
-
 
 def horde_makeup(experience, dictionary):
     player_input = input(
@@ -109,11 +105,9 @@ def horde_makeup(experience, dictionary):
         input("Sorry, didn't catch that, could you try again? ")
         horde_makeup(experience, dictionary)
 
-
 def experience_maths_same(mon_exp, team_exp, monster_name, dictionary):
     times_run_through = 0
     new_dictionary = {monster_name:0}
-    ##print("challenge rating: " + challenge_rating)
     while(mon_exp < team_exp):
         if(times_run_through == 0):
             times_run_through += 1
