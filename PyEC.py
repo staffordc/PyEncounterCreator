@@ -29,17 +29,11 @@ monsters = {
     "zombie": [50, "AC 8", "HP 22 (3d8)", "Speed 20 ft", "pg# 315"],
     "gnoll": [100, "AC 15", "HP 22 (5d8)", "Speed 30 ft", "pg# 163"],
 }
-
-players = int(input(
-        "How many players are you creating an encounter for? (Please use 1, 2, 3, etc.): "))
-players_str = str(players)
-print("Party of "+players_str+" your encounter is underway!")
-time.sleep(1)
     
 def party_levels(players):
     player_size = []
     for x in range(players):
-        player_size.append(input("What level is player : "))
+        player_size.append(input("What level is player"+ x + " : "))
     print(player_size)
     player_size_int = list(map(int, player_size))
     print(player_size_int)
@@ -95,9 +89,9 @@ def horde_makeup_same(exp_input, dictionary):
         "What is the name of the monster you want? ")
     for key, value in dictionary.items():
         if (key in dictionary):
-            base_exp = value[0]
+            mon_exp = value[0]
             ##print("base_exp: " + base_exp)
-            return experience_maths(base_exp, exp_input, monster_name, dictionary) 
+            return experience_maths_same(mon_exp, exp_input, monster_name, dictionary) 
         else:
             print("Please type your response again")
             return horde_makeup_same(exp_input, dictionary)
@@ -116,29 +110,40 @@ def horde_makeup(experience, dictionary):
         horde_makeup(experience, dictionary)
 
 
-def experience_maths(base_exp, exp_input, monster_name, dictionary):
-    multi_monster = input("Would you like many of the same monster? (y or n) ")
-    multi_monster = multi_monster.lower()
-    challenge_rating = exp_input/base_exp
-    ###print("challenge rating: " + challenge_rating)
-    if(multi_monster == "y"):
-        if(challenge_rating < 2 and challenge_rating >= 1.5):
-            return"2 " + monster_name
-        elif(challenge_rating >= 2 and challenge_rating < 2.5):
-            return"6 " + monster_name
-        elif(challenge_rating >= 2.5 and challenge_rating < 3):
-            return"10 " + monster_name
-        elif(challenge_rating >= 3 and challenge_rating < 4):
-            return"14 " + monster_name
-        elif(challenge_rating > 4):
-            return"20 " + monster_name
-        else:
-            return "1 " + monster_name
-    elif(multi_monster == "n"):
-        print("I didn't actually figure this part out")
-    else:
-        print("Sorry, I didn't catch that, come again? ")
-        experience_maths(base_exp, exp_input, monster_name, dictionary)
+def experience_maths_same(mon_exp, team_exp, monster_name, dictionary):
+    times_run_through = 0
+    new_dictionary = {monster_name:0}
+    ##print("challenge rating: " + challenge_rating)
+    while(mon_exp < team_exp):
+        if(times_run_through == 0):
+            times_run_through += 1
+            mon_exp *= 1
+        elif(times_run_through < 2):
+            times_run_through += 1
+            mon_exp *= 1.5
+        elif(times_run_through == 2 or times_run_through < 7):
+            times_run_through += 1
+            mon_exp *= 2
+        elif(times_run_through == 7 or times_run_through < 11):
+            times_run_through += 1
+            mon_exp *= 2.5
+        elif(times_run_through == 11 or times_run_through < 14):
+            times_run_through += 1
+            mon_exp *= 3
+        elif(times_run_through >= 14):
+            times_run_through += 1
+            mon_exp *= 4
+    if (times_run_through == 0):
+        print("Hey, that monster is more than your party can handle! ")
+        experience_maths_same(mon_exp, team_exp, monster_name, dictionary)
+    new_dictionary[monster_name] = times_run_through 
+    return new_dictionary
+
+players = int(input(
+        "How many players are you creating an encounter for? (Please use 1, 2, 3, etc.): "))
+players_str = str(players)
+print("Party of "+players_str+" your encounter is underway!")
+time.sleep(1)
 
 experience = party_levels(players)
 
