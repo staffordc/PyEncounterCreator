@@ -33,7 +33,7 @@ monsters = {
 def party_levels(players):
     player_size = []
     for x in range(players):
-        player_size.append(input("What level is player"+ str(x) + " : "))
+        player_size.append(input("What level is player "+ str(x+1) + " : "))
     ##print(player_size)
     player_size_int = list(map(int, player_size))
     ##print(player_size_int)
@@ -130,7 +130,7 @@ def experience_maths_same(mon_exp, team_exp, monster_name, dictionary):
     if (times_run_through == 0):
         print("Hey, that monster is more than your party can handle! ")
         experience_maths_same(mon_exp, team_exp, monster_name, dictionary)
-    new_dictionary[monster_name] = times_run_through 
+    new_dictionary[monster_name] = times_run_through-1 
     return new_dictionary
 
 players = int(input(
