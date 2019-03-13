@@ -75,7 +75,7 @@ def party_levels(players):
         print("You need to type e, m, h, or d for difficulty")
         party_levels(players)
 
-def player_input_experience(intput, dictionary):
+def monster_list_exp_check(intput, dictionary):
     new_dictionary = {}
     for key, value in dictionary.items():
         if(intput in value and intput == value[0] or intput > value[0]):
@@ -85,13 +85,20 @@ def player_input_experience(intput, dictionary):
 def horde_makeup_same(exp_input, dictionary):
     monster_name = input(
         "What is the name of the monster you want? ")
-    for key, value in dictionary.items():
-        if (key in dictionary):
-            mon_exp = value[0]
-            return experience_maths_same(mon_exp, exp_input, monster_name, dictionary) 
-        else:
-            print("Please type your response again")
-            return horde_makeup_same(exp_input, dictionary)
+    if (monster_name in dictionary):
+        value = dictionary[monster_name]
+        if (monster_name.endswith(" chief")):
+            print("key")
+            group_descision = input("Would you like a group of underlings with this chief? (y/n) ").lower()
+            if(group_descision == "y"):
+                mon_exp = value[0]
+                return experience_maths_same(mon_exp, exp_input, "bugbear", dictionary)
+        mon_exp = value[0]
+        print(value)
+        return experience_maths_same(mon_exp, exp_input, monster_name, dictionary) 
+    else:
+        print("Please type your response again")
+        return horde_makeup_same(exp_input, dictionary)
 
 def horde_makeup(experience, dictionary):
     player_input = input(
@@ -100,10 +107,10 @@ def horde_makeup(experience, dictionary):
     if(player_input_horde == 'y'):
         return horde_makeup_same(experience, dictionary)
     elif(player_input_horde == 'n'):
-        pp.pprint(player_input_experience(experience, dictionary))
+        pp.pprint(monster_list_exp_check(experience, dictionary))
     else:
         input("Sorry, didn't catch that, could you try again? ")
-        horde_makeup(experience, dictionary)
+        return horde_makeup(experience, dictionary)
 
 def experience_maths_same(mon_exp, team_exp, monster_name, dictionary):
     times_run_through = 0
@@ -141,10 +148,10 @@ time.sleep(1)
 
 experience = party_levels(players)
 
-pp.pprint(player_input_experience(experience, monsters))
+pp.pprint(monster_list_exp_check(experience, monsters))
 
 player_monster_list = (
-    player_input_experience(experience, monsters))
+    monster_list_exp_check(experience, monsters))
 
 same_horde_output = horde_makeup(experience, player_monster_list)
 
