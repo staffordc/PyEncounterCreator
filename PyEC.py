@@ -34,9 +34,7 @@ def party_levels(players):
     player_size = []
     for x in range(players):
         player_size.append(input("What level is player "+ str(x+1) + " : "))
-    ##print(player_size)
     player_size_int = list(map(int, player_size))
-    ##print(player_size_int)
     difficulty = input(
         "How difficult is this encounter? (e)asy, (m)edium, (h)ard, (d)eadly? : ")
     difficulty = difficulty.upper()
@@ -44,14 +42,12 @@ def party_levels(players):
         print("Alright, take it easy on em, sure.")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 25
-        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     elif difficulty == 'M':
         print("Okay, so a fair fight")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 50
-        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     elif difficulty == 'H':
@@ -61,14 +57,12 @@ def party_levels(players):
                 player_size_int[i] = 400
             else:
                 player_size_int[i] = x * 75
-        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     elif difficulty == 'D':
         print("This is how you get a party wipe, dude.")
         for i, x in enumerate(player_size_int):
             player_size_int[i] = x * 125
-        ##print(player_size_int)
         experience = sum(player_size_int)
         return experience
     else:
@@ -82,7 +76,10 @@ def monster_list_exp_check(intput, dictionary):
             new_dictionary[key] = value
     return new_dictionary
 
-def horde_makeup_same(exp_input, dictionary):
+def horde_create_chief_group(mon_exp, exp_input, ):
+    raise Exception('hey, this isnt ready yet, this is for chiefs you')
+
+def horde_create_conv(exp_input, dictionary):
     monster_name = input(
         "What is the name of the monster you want? ")
     if (monster_name in dictionary):
@@ -92,25 +89,26 @@ def horde_makeup_same(exp_input, dictionary):
             group_descision = input("Would you like a group of underlings with this chief? (y/n) ").lower()
             if(group_descision == "y"):
                 mon_exp = value[0]
-                return experience_maths_same(mon_exp, exp_input, "bugbear", dictionary)
+                ##New func for different group set-up
+                return experience_maths_same(mon_exp, exp_input, monster_name, dictionary)
         mon_exp = value[0]
         print(value)
         return experience_maths_same(mon_exp, exp_input, monster_name, dictionary) 
     else:
         print("Please type your response again")
-        return horde_makeup_same(exp_input, dictionary)
+        return horde_create_conv(exp_input, dictionary)
 
-def horde_makeup(experience, dictionary):
+def challenge_rating_math(experience, dictionary):
     player_input = input(
         "Would you like help with challenge rating math? ")
     player_input_horde = player_input.lower()
     if(player_input_horde == 'y'):
-        return horde_makeup_same(experience, dictionary)
+        return horde_create_conv(experience, dictionary)
     elif(player_input_horde == 'n'):
         pp.pprint(monster_list_exp_check(experience, dictionary))
     else:
         input("Sorry, didn't catch that, could you try again? ")
-        return horde_makeup(experience, dictionary)
+        return challenge_rating_math(experience, dictionary)
 
 def experience_maths_same(mon_exp, team_exp, monster_name, dictionary):
     times_run_through = 0
@@ -153,6 +151,6 @@ pp.pprint(monster_list_exp_check(experience, monsters))
 player_monster_list = (
     monster_list_exp_check(experience, monsters))
 
-same_horde_output = horde_makeup(experience, player_monster_list)
+same_horde_output = challenge_rating_math(experience, player_monster_list)
 
 print(same_horde_output)
